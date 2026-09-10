@@ -1,8 +1,8 @@
 # 2. User Research
 
 ## Đối tượng
-- Primary user:
-- Secondary user:
+- Primary user: Những người trồng cây nghiệp dư
+- Secondary user: Nhân viên văn phòng
 - Stakeholder khác:
 
 ## Phương pháp
