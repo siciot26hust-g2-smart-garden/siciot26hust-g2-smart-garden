@@ -1,14 +1,14 @@
 # Milestone Checklist
 
 ## M1 — cuối Buổi 1
-- [ ] Primary user rõ
-- [ ] Problem statement không chứa sẵn giải pháp
-- [ ] Có user research hoặc ghi rõ giả định
-- [ ] Có persona
-- [ ] Có 3–5 pain points
-- [ ] Có insight
-- [ ] Có POV
-- [ ] Có HMW mở
+- [x] Primary user rõ
+- [x] Problem statement không chứa sẵn giải pháp
+- [x] Có user research hoặc ghi rõ giả định
+- [x] Có persona
+- [x] Có 3–5 pain points
+- [x] Có insight
+- [x] Có POV
+- [x] Có HMW mở
 
 ## M2 — cuối Buổi 2 — Scope Freeze
 - [ ] Có ít nhất 3 phương án
