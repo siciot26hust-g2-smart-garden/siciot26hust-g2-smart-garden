@@ -37,9 +37,9 @@ Physical World
 ## Thành phần
 | Layer | Thành phần | Vai trò |
 |---|---|---|
-| Sensing | Cảm biến độ ẩm đất (Soil Moisture Sensor), Cảm biến nhiệt độ & độ ẩm không khí (DHT11/DHT22).| Thu thập liên tục các đại lượng vật lý môi trường khu vườn ban công và mức nước bình chứa.|
-| Edge | Vi điều khiển ESP32, Module Rơ-le điều khiển máy bơm mini, Module điều khiển động cơ (Servo/Stepper) kéo màn chắn nắng, Mạch nguồn hạ áp DC. | Đọc cảm biến, thực thi thuật toán tự động tưới và kéo màn chắn cục bộ tại biên, xử lý truyền thông đồng bộ với Blynk Cloud. |
-| Network | Mạng Wi-Fi 2.4 GHz gia đình (802.11 b/g/n), Giao thức truyền thông Blynk Protocol (WebSockets / TCP) và HTTP/HTTPS. | Cầu nối truyền tải hai chiều dữ liệu cảm biến và lệnh điều khiển giữa vi điều khiển ESP32 và Blynk Cloud với độ trễ thấp. |
-| Backend | Nền tảng Blynk Cloud (Blynk IoT Platform). | Quản lý xác thực thiết bị, điều phối dữ liệu, xử lý sự kiện cảnh báo và gửi thông báo đẩy về smartphone. |
-| Database | Cơ sở dữ liệu đám mây Blynk Cloud. | Lưu trữ dữ liệu lịch sử các Virtual Pins (nhiệt độ, độ ẩm đất, mức nước), nhật ký kích hoạt bơm và trạng thái màn chắn. |
-| Application | Ứng dụng Blynk Mobile Dashboard (trên iOS/Android) và Blynk Web Console. | Cung cấp giao diện trực quan cho nhân viên văn phòng giám sát biểu đồ môi trường thời gian thực, xem cảnh báo và gửi lệnh điều khiển từ xa. |
+| **Sensing** | Cảm biến độ ẩm đất, cảm biến nhiệt độ | Đo lường độ ẩm của đất và nhiệt độ môi trường giàn cây ban công |
+| **Edge Device (Đầu cuối)** | Vi điều khiển ESP32, bơm nước mini, động cơ Servo | Thu thập dữ liệu cảm biến, nhận lệnh điều khiển từ Gateway để bật/tắt bơm và quay góc Servo đóng/mở rèm |
+| **Network** | Router Wi-Fi gia đình, giao thức MQTT (Publish/Subscribe) | Cầu nối truyền tải dữ liệu hai chiều giữa ESP32 và Raspberry Pi |
+| **Processing Center (Trung tâm xử lý)** | Raspberry Pi 4 tích hợp: MQTT Broker (Mosquitto), Engine xử lý Node-RED / Python, Web Server | Điều phối bản tin MQTT, thực thi thuật logic (<30% bơm, >32°C mở rèm), phục vụ Web Server HTTP/WebSocket |
+| **Database** | PostgreSQL / InfluxDB (chạy trên Raspberry Pi 4) | Lưu trữ lịch sử dữ liệu đo lường và nhật ký điều khiển |
+| **Application (Client)** | Giao diện Web (PC / Điện thoại) kết nối qua HTTP / WebSocket | Hiển thị đồ thị thời gian thực và cung cấp nút điều khiển: Tưới nước, Đóng/Mở rèm |

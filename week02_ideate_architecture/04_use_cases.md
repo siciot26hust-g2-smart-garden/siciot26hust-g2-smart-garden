@@ -1,48 +1,49 @@
 # 4. Use Cases
 
-## UC01
-- Actor: Hệ thống (Edge Device / ESP32)
+## UC01: Tự động tưới nước theo độ ẩm đất 
+- Actor: Hệ thống (ESP32 & Node-RED trên Raspberry Pi 4).
+
 - Trigger: Cảm biến độ ẩm đất ghi nhận giá trị giảm xuống dưới ngưỡng cài đặt (ngưỡng đất khô).
 
 - Main flow:. 
-1. Vi điều khiển ESP32 đọc định kỳ giá trị độ ẩm từ cảm biến đất.
-2. ESP32 phát hiện độ ẩm dưới ngưỡng cài đặt.
-3. ESP32 kích hoạt rơ-le bật máy bơm mini tưới nhỏ giọt vào chậu cây, đồng thời cập nhật trạng thái bơm đang bật lên ứng dụng Blynk.
-4. ESP32 liên tục giám sát độ ẩm đất; khi độ ẩm đạt ngưỡng đủ ẩm cài đặt hoặc chạm thời gian tưới an toàn tối đa, ESP32 ngắt rơ-le tắt máy bơm.
-5. ESP32 cập nhật trạng thái chu kỳ tưới hoàn thành lên Blynk App.
+1. ESP32 đọc dữ liệu từ cảm biến độ ẩm đất định kỳ.
+2. ESP32 publish bản tin đo lường qua Router Wi-Fi lên MQTT Broker (Mosquitto) trên Raspberry Pi 4.
+3. Engine Node-RED / Python trên Pi 4 nhận dữ liệu, phát hiện độ ẩm đất < ngưỡng cài đặt và kích hoạt luật ra lệnh Bơm.
+4. Node-RED lưu bản ghi vào Database và publish bản tin Command qua MQTT xuống ESP32.
+5. ESP32 nhận lệnh, kích hoạt Rơ-le bật máy bơm nước mini tưới cây, đồng thời cập nhật trạng thái lên Giao diện Web.
+6. Khi độ ẩm đất đạt ngưỡng an toàn hoặc hết thời gian tưới, Node-RED phát lệnh ngắt bơm.
 
-- Expected result: Cây được cấp nước kịp thời, không bị héo vì thiếu nước và người dùng theo dõi được trên app Blynk.
+- Expected result:Cây được cấp nước kịp thời, trạng thái hiển thị trực quan trên Giao diện Web.
 
 
-## UC02
-- Actor:  Hệ thống (Edge Device / ESP32).
+## UC02: Tự động mở rèm che nắng khi nhiệt độ cao 
 
-- Trigger: Cảm biến nhiệt độ ghi nhận nhiệt độ môi trường ban công vượt ngưỡng nắng nóng cài đặt.
-
+- Actor: Hệ thống (ESP32 & Node-RED trên Raspberry Pi 4).
+- Trigger: Cảm biến nhiệt độ ghi nhận nhiệt độ ban công > 32°C.
 - Main flow:
-1. Cảm biến DHT định kỳ gửi dữ liệu nhiệt độ và độ ẩm không khí về ESP32.
-2. ESP32 phát hiện nhiệt độ vượt ngưỡng an toàn cài đặt cho cây trồng ban công.
-3. ESP32 phát xung điều khiển 1 động cơ (servo/động cơ bước) quay kéo màn chắn vào che phủ phía trên giàn cây.
-4. Hệ thống gửi thông báo sự kiện (Blynk Notification) về điện thoại thông báo màn chắn đã được kéo vào để che nắng cho cây.
-5. Khi nhiệt độ hạ xuống dưới ngưỡng cảnh báo và thời tiết dịu mát trở lại, ESP32 tự động điều khiển động cơ quay ngược lại để thu màn chắn, giúp cây tiếp tục đón ánh sáng tự nhiên.
+1. Cảm biến nhiệt độ gửi dữ liệu về ESP32.
+2. ESP32 publish dữ liệu nhiệt độ lên MQTT Broker (Mosquitto) trên Pi 4.
+3. Node-RED phát hiện nhiệt độ > 32°C, kích hoạt luật ra lệnh Servo mở rèm che nắng.
+4. Node-RED lưu lịch sử vào Database và publish bản tin Command qua MQTT xuống ESP32.
+5. ESP32 điều khiển góc quay động cơ Servo để mở rèm che phủ giàn cây, đồng thời cập nhật trạng thái lên Giao diện Web.
+6. Khi nhiệt độ hạ xuống dưới ngưỡng an toàn, Node-RED ra lệnh Servo quay đóng/thu rèm lại.
+- Expected result: Giàn cây ban công được che chắn tự động, tránh cháy lá khi nắng gắt.
 
-- Expected result: Giàn cây ban công được che chắn kịp thời trong các đợt nắng nóng gay gắt, ngăn ngừa cháy lá khi chủ vắng nhà.
 
-
-## UC03
+## UC03: Giám sát và điều khiển thủ công từ xa qua Giao diện Web 
 - Actor: Nhân viên văn phòng (Người dùng).
-
-- Trigger: Người dùng đang ở nơi làm việc mở điện thoại để kiểm tra vườn cây hoặc muốn chủ động tưới/kéo màn chắn thủ công.
-
+- Trigger: Người dùng mở Giao diện Web trên PC hoặc Điện thoại.
 - Main flow:
-1. Người dùng mở ứng dụng Blynk Mobile trên điện thoại.
-2. Ứng dụng kết nối Blynk Cloud hiển thị thông số thời gian thực: nhiệt độ, độ ẩm không khí, độ ẩm đất và trạng thái bơm/màn chắn.
-3. Người dùng nhấn nút gạt (Button Widget) để "Tưới ngay" hoặc "Kéo/Thu màn chắn".
-4. Blynk Cloud truyền lệnh qua Virtual Pin tương ứng xuống vi điều khiển ESP32.
-5. ESP32 nhận lệnh, kích hoạt rơ-le bơm nước hoặc điều khiển động cơ màn chắn theo yêu cầu.
-6. ESP32 phản hồi trạng thái thực tế lên Blynk App để đồng bộ giao diện.
+1. Người dùng truy cập Giao diện Web (kết nối Web Server trên Raspberry Pi 4 qua HTTP / WebSocket).
+2. Web hiển thị đồ thị nhiệt độ, độ ẩm đất thời gian thực trích xuất từ Database.
+3. Người dùng bấm nút "Tưới nước" hoặc "Đóng/Mở rèm" trên giao diện.
+4. Web Server chuyển tiếp yêu cầu đến Node-RED / Python.
+5. Node-RED publish bản tin Command qua MQTT Broker xuống ESP32.
+6. ESP32 nhận lệnh, bật/tắt bơm hoặc quay Servo rèm theo yêu cầu, phản hồi trạng thái thực tế lên Web.
+- Expected result: Người dùng hoàn toàn chủ động theo dõi và điều khiển vườn cây mọi lúc mọi nơi qua trình duyệt web.
 
-- Expected result:Người dùng nắm bắt trực quan tình trạng vườn cây mọi lúc mọi nơi và chủ động can thiệp chăm sóc cây chỉ với 1 chạm từ văn phòng.
+
+
 
 
 

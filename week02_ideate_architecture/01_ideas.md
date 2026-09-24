@@ -11,11 +11,11 @@
 
 
 ## Phương án B
-- Mô tả:Hệ thống đọc dữ liệu từ cảm biến độ ẩm đất, cảm biến nhiệt độ & độ ẩm không khí (DHT11/DHT22), cảm biến siêu âm đo mực nước bình chứa; điều khiển máy bơm mini tưới nhỏ giọt qua relay; đồng thời tích hợp 1 động cơ (servo/động cơ bước) để tự động kéo màn chắn che nắng bảo vệ giàn cây ban công khi trời nắng nóng và kết nối ứng dụng Blynk Mobile để theo dõi, điều khiển từ xa.
+- Mô tả:Hệ thống tự động tưới cây dựa theo độ ẩm thực tế của đất, tự động kéo lưới che chắn khi ánh nắng gắt. Người dùng có thể theo dõi và trực tiếp điều khiển, cài đặt theo nhu cầu.
 
 - Giá trị: giải quyết triệt để 2 nỗi đau lớn nhất của nhân viên văn phòng bằng cách: tự động tưới nước theo độ ẩm đất và tự động kéo màn chắn che nắng khi trời nắng gắt
-- Ưu điểm: Giám sát và điều khiển từ xa mọi lúc mọi nơi; tiết kiệm nước; chi phí không quá cao; có khả năng bảo vệ và chăm sóc tốt cho cây.
-- Nhược điểm: Yêu cầu wifi ổn định; người dùng theo dõi và nhận cảnh báo hoàn toàn qua ứng dụng di động (không có hiển thị hay phát chuông tại chỗ).
+- Ưu điểm: Giám sát và điều khiển từ xa mọi lúc mọi nơi một cách linh hoạt; tiết kiệm nước; chi phí không quá cao.
+- Nhược điểm: Yêu cầu wifi ổn định.
 
 
 ## Phương án C
