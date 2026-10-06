@@ -1,0 +1,1373 @@
+[
+  {
+    "id": "d2d5a5906a7e4dcf",
+    "type": "tab",
+    "label": "Smart Garden 2.0",
+    "disabled": false,
+    "info": "Dashboard 2.0 for Smart Garden. Auto is status-only; manual actuator controls are disabled while AUTO is ON."
+  },
+  {
+    "id": "00cbc4dc1fcc44d3",
+    "type": "mqtt-broker",
+    "name": "ESP32 Garden Broker",
+    "broker": "10.218.85.76",
+    "port": "1883",
+    "clientid": "NodeRED_Garden_Dashboard2",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true
+  },
+  {
+    "id": "3530e18cf29f48fe",
+    "type": "ui-base",
+    "name": "Smart Garden UI",
+    "path": "/dashboard",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-control",
+      "ui-notification"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "none",
+    "navigationStyle": "icon",
+    "titleBarStyle": "default"
+  },
+  {
+    "id": "f81bd4f790044cce",
+    "type": "ui-theme",
+    "name": "Smart Garden Theme",
+    "colors": {
+      "surface": "#ffffff",
+      "primary": "#1687a7",
+      "bgPage": "#f3f6f8",
+      "groupBg": "#ffffff",
+      "groupOutline": "#d8e0e5"
+    },
+    "sizes": {
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "8px",
+      "widgetGap": "10px"
+    }
+  },
+  {
+    "id": "a88f921c2d164a23",
+    "type": "ui-page",
+    "name": "Smart Garden 2",
+    "ui": "3530e18cf29f48fe",
+    "path": "/garden2",
+    "icon": "home",
+    "layout": "grid",
+    "theme": "f81bd4f790044cce",
+    "order": 1,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "03f6b31614d74ca7",
+    "type": "ui-group",
+    "name": "Sensors",
+    "page": "a88f921c2d164a23",
+    "width": "12",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "c6b5cc552ecd40ff",
+    "type": "ui-group",
+    "name": "System status",
+    "page": "a88f921c2d164a23",
+    "width": "12",
+    "height": "1",
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "aa5662b2f9f64b06",
+    "type": "ui-group",
+    "name": "Manual controls",
+    "page": "a88f921c2d164a23",
+    "width": "12",
+    "height": "1",
+    "order": 3,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "5f7bf5e7dc7d4fe0",
+    "type": "ui-group",
+    "name": "Telemetry and alerts",
+    "page": "a88f921c2d164a23",
+    "width": "12",
+    "height": "1",
+    "order": 4,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "c82993c3dfc349cf",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Temperature",
+    "topic": "garden/sensor/temp",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 60,
+    "wires": [
+      [
+        "9429907995b440a9"
+      ]
+    ]
+  },
+  {
+    "id": "2ccd4d7df4d347ec",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Humidity",
+    "topic": "garden/sensor/hum",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 100,
+    "wires": [
+      [
+        "7891aef9e93043a1"
+      ]
+    ]
+  },
+  {
+    "id": "6e37a844f08e47ee",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Soil",
+    "topic": "garden/sensor/soil",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 140,
+    "wires": [
+      [
+        "cc92ce3e15344396"
+      ]
+    ]
+  },
+  {
+    "id": "e2cef52fa6474ac5",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Water distance",
+    "topic": "garden/sensor/water",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 180,
+    "wires": [
+      [
+        "c2292fdd0ede4bc7"
+      ]
+    ]
+  },
+  {
+    "id": "9429907995b440a9",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "03f6b31614d74ca7",
+    "order": 1,
+    "width": 3,
+    "height": 1,
+    "name": "Temperature",
+    "label": "Temperature",
+    "format": "{{msg.payload}} °C",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "7891aef9e93043a1",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "03f6b31614d74ca7",
+    "order": 2,
+    "width": 3,
+    "height": 1,
+    "name": "Humidity",
+    "label": "Humidity",
+    "format": "{{msg.payload}} %",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "cc92ce3e15344396",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "03f6b31614d74ca7",
+    "order": 3,
+    "width": 3,
+    "height": 1,
+    "name": "Soil moisture",
+    "label": "Soil moisture",
+    "format": "{{msg.payload}} %",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "c2292fdd0ede4bc7",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "03f6b31614d74ca7",
+    "order": 4,
+    "width": 3,
+    "height": 1,
+    "name": "Water distance",
+    "label": "Water distance",
+    "format": "{{msg.payload}} cm",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "a60cf3e39c7b4464",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Pump state",
+    "topic": "garden/state/pump",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 250,
+    "wires": [
+      [
+        "0bbe64ffc2434922"
+      ]
+    ]
+  },
+  {
+    "id": "fc9bc5b7d93c4a34",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Servo state",
+    "topic": "garden/state/servo",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 290,
+    "wires": [
+      [
+        "c1a2e3a527a84996"
+      ]
+    ]
+  },
+  {
+    "id": "9a14552f111d4241",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Auto state",
+    "topic": "garden/state/auto",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 330,
+    "wires": [
+      [
+        "2e5b32514b0f4522",
+        "b14896f7963945fe"
+      ]
+    ]
+  },
+  {
+    "id": "3d28c918cdf745be",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Mode",
+    "topic": "garden/state/mode",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 370,
+    "wires": [
+      [
+        "460402afdd5f4e23"
+      ]
+    ]
+  },
+  {
+    "id": "b2104bb6343743c6",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Water state",
+    "topic": "garden/state/water",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 410,
+    "wires": [
+      [
+        "d94bb734728c4645"
+      ]
+    ]
+  },
+  {
+    "id": "67e857962001464b",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Pump fault",
+    "topic": "garden/state/pump_fault",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 450,
+    "wires": [
+      [
+        "1a0fb7c3da1747c1"
+      ]
+    ]
+  },
+  {
+    "id": "8d62c71b73064ccb",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "ESP32 status",
+    "topic": "garden/status",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 490,
+    "wires": [
+      [
+        "8bd5d514053e42a3"
+      ]
+    ]
+  },
+  {
+    "id": "8bf9ac4f93444f67",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "ESP32 session",
+    "topic": "garden/state/session",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 530,
+    "wires": [
+      [
+        "3b9cec5ad329474d"
+      ]
+    ]
+  },
+  {
+    "id": "0bbe64ffc2434922",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 1,
+    "width": 3,
+    "height": 1,
+    "name": "Pump",
+    "label": "Pump",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 250,
+    "wires": []
+  },
+  {
+    "id": "c1a2e3a527a84996",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 2,
+    "width": 3,
+    "height": 1,
+    "name": "Servo",
+    "label": "Servo",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 290,
+    "wires": []
+  },
+  {
+    "id": "2e5b32514b0f4522",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 3,
+    "width": 3,
+    "height": 1,
+    "name": "Auto",
+    "label": "Automatic control",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 330,
+    "wires": []
+  },
+  {
+    "id": "f54fc473787643b9",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 4,
+    "width": 3,
+    "height": 1,
+    "name": "Mode",
+    "label": "Mode",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 370,
+    "wires": []
+  },
+  {
+    "id": "d94bb734728c4645",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 5,
+    "width": 3,
+    "height": 1,
+    "name": "Water state",
+    "label": "Water state",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 410,
+    "wires": []
+  },
+  {
+    "id": "1a0fb7c3da1747c1",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 6,
+    "width": 3,
+    "height": 1,
+    "name": "Pump fault",
+    "label": "Pump fault",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 450,
+    "wires": []
+  },
+  {
+    "id": "8bd5d514053e42a3",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 7,
+    "width": 3,
+    "height": 1,
+    "name": "ESP32 status",
+    "label": "ESP32 status",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 490,
+    "wires": []
+  },
+  {
+    "id": "f35e9b754fa1472a",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "c6b5cc552ecd40ff",
+    "order": 8,
+    "width": 6,
+    "height": 1,
+    "name": "ESP32 session",
+    "label": "ESP32 session",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "x": 330,
+    "y": 530,
+    "wires": []
+  },
+  {
+    "id": "1a863617b14741a1",
+    "type": "ui-button",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "aa5662b2f9f64b06",
+    "name": "PUMP ON",
+    "label": "PUMP ON",
+    "order": 1,
+    "width": 3,
+    "height": 1,
+    "emulateClick": false,
+    "tooltip": "Manual only: disabled while AUTO is ON",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "water-pump",
+    "iconPosition": "left",
+    "payload": "ON",
+    "payloadType": "str",
+    "topic": "garden/control/pump",
+    "topicType": "str",
+    "x": 160,
+    "y": 620,
+    "wires": [
+      [
+        "676055b6986c40d5"
+      ]
+    ]
+  },
+  {
+    "id": "6b13d9c31d6d4546",
+    "type": "ui-button",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "aa5662b2f9f64b06",
+    "name": "PUMP OFF",
+    "label": "PUMP OFF",
+    "order": 2,
+    "width": 3,
+    "height": 1,
+    "emulateClick": false,
+    "tooltip": "Manual only: disabled while AUTO is ON",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "water-pump-off",
+    "iconPosition": "left",
+    "payload": "OFF",
+    "payloadType": "str",
+    "topic": "garden/control/pump",
+    "topicType": "str",
+    "x": 160,
+    "y": 660,
+    "wires": [
+      [
+        "676055b6986c40d5"
+      ]
+    ]
+  },
+  {
+    "id": "215b04fa6281473b",
+    "type": "ui-button",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "aa5662b2f9f64b06",
+    "name": "SERVO OPEN",
+    "label": "SERVO OPEN",
+    "order": 3,
+    "width": 3,
+    "height": 1,
+    "emulateClick": false,
+    "tooltip": "Manual only: disabled while AUTO is ON",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "curtains",
+    "iconPosition": "left",
+    "payload": "OPEN",
+    "payloadType": "str",
+    "topic": "garden/control/servo",
+    "topicType": "str",
+    "x": 160,
+    "y": 700,
+    "wires": [
+      [
+        "676055b6986c40d5"
+      ]
+    ]
+  },
+  {
+    "id": "a57945c68e004b06",
+    "type": "ui-button",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "aa5662b2f9f64b06",
+    "name": "SERVO CLOSE",
+    "label": "SERVO CLOSE",
+    "order": 4,
+    "width": 3,
+    "height": 1,
+    "emulateClick": false,
+    "tooltip": "Manual only: disabled while AUTO is ON",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "curtains-closed",
+    "iconPosition": "left",
+    "payload": "CLOSE",
+    "payloadType": "str",
+    "topic": "garden/control/servo",
+    "topicType": "str",
+    "x": 160,
+    "y": 740,
+    "wires": [
+      [
+        "676055b6986c40d5"
+      ]
+    ]
+  },
+  {
+    "id": "81a873141ecf40ee",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "aa5662b2f9f64b06",
+    "order": 8,
+    "width": 9,
+    "height": 1,
+    "name": "Control note",
+    "label": "Manual control: switch to MANUAL MODE first. ESP32 safety remains active.",
+    "format": "AUTO is status-only here. Manual buttons are automatically disabled while AUTO is ON.",
+    "layout": "row-left",
+    "className": "",
+    "x": 500,
+    "y": 820,
+    "wires": []
+  },
+  {
+    "id": "a045f26863ce4925",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Telemetry",
+    "topic": "garden/telemetry",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 880,
+    "wires": [
+      [
+        "c49b033f6dac4475",
+        "7e548f1e44a916da",
+        "4c2c250c0f1376f0",
+        "eb7d8284c6434eec",
+        "bcb0ab58c1104fef",
+        "3c7541575bc24e5d",
+        "16c33fa262734616",
+        "116d8bda61e24fe9",
+        "b26133c21daf423a"
+      ]
+    ]
+  },
+  {
+    "id": "daaaf0a857d4488a",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "ACK",
+    "topic": "garden/state/ack",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 920,
+    "wires": [
+      [
+        "ecc1546b6a664460"
+      ]
+    ]
+  },
+  {
+    "id": "10d94a6b5e084cdb",
+    "type": "mqtt in",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Alert",
+    "topic": "garden/alert",
+    "qos": "1",
+    "datatype": "auto",
+    "broker": "00cbc4dc1fcc44d3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 80,
+    "y": 960,
+    "wires": [
+      [
+        "85560469f1194567"
+      ]
+    ]
+  },
+  {
+    "id": "c49b033f6dac4475",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Format telemetry",
+    "func": "let t=msg.payload;\nif(typeof t==='string'){try{t=JSON.parse(t)}catch(e){msg.payload=String(t);return msg;}}\nif(!t||typeof t!=='object')return null;\nconst age=v=>v===4294967295?'N/A':(Number(v)/1000).toFixed(1)+' s';\nmsg.payload=`seq=${t.seq ?? '-'} | uptime=${t.uptime_ms ?? '-'} ms | soil age=${age(t.soil_age_ms)} | DHT age=${age(t.dht_age_ms)} | water age=${age(t.water_age_ms)}`;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 880,
+    "wires": [
+      [
+        "fc69b2d9c6ba4dba"
+      ]
+    ]
+  },
+  {
+    "id": "ecc1546b6a664460",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Format ACK",
+    "func": "let a=msg.payload;\nif(typeof a==='string'){try{a=JSON.parse(a)}catch(e){msg.payload=String(a);return msg;}}\nif(a&&typeof a==='object')msg.payload=`${a.result||'UNKNOWN'} | ${a.topic||'-'} | seq=${a.seq??'-'} | pump=${a.pump||'-'}`;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 280,
+    "y": 920,
+    "wires": [
+      [
+        "9cc2721febd24b8c"
+      ]
+    ]
+  },
+  {
+    "id": "fc69b2d9c6ba4dba",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "5f7bf5e7dc7d4fe0",
+    "order": 1,
+    "width": 12,
+    "height": 1,
+    "name": "Telemetry",
+    "label": "Telemetry",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "className": "",
+    "x": 530,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "9cc2721febd24b8c",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "5f7bf5e7dc7d4fe0",
+    "order": 2,
+    "width": 12,
+    "height": 1,
+    "name": "Last ACK",
+    "label": "Last ACK",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "className": "",
+    "x": 530,
+    "y": 920,
+    "wires": []
+  },
+  {
+    "id": "85560469f1194567",
+    "type": "ui-text",
+    "z": "d2d5a5906a7e4dcf",
+    "group": "5f7bf5e7dc7d4fe0",
+    "order": 3,
+    "width": 12,
+    "height": 1,
+    "name": "Last alert",
+    "label": "Last alert",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "className": "",
+    "x": 530,
+    "y": 960,
+    "wires": []
+  },
+  {
+    "id": "3b9cec5ad329474d",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Store ESP32 session",
+    "func": "const s=String(msg.payload||'').trim();\nif(s){\n  const old=flow.get('esp32_session');\n  flow.set('esp32_session',s);\n  if(old!==s)flow.set('cmd_seq',{});\n}\nmsg.payload=s||'UNKNOWN';\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 530,
+    "wires": [
+      [
+        "f35e9b754fa1472a"
+      ]
+    ]
+  },
+  {
+    "id": "9659123b55c64cbe",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Build session|sequence command",
+    "func": "const session=flow.get('esp32_session');\nif(!session){node.status({fill:'red',shape:'ring',text:'No ESP32 session'});return null;}\nconst topic=String(msg.topic||'');\nconst value=String(msg.payload||'');\nif(!topic||!value)return null;\nlet seqs=flow.get('cmd_seq')||{};\nlet seq=seqs[topic];\nlet timeSeq=Math.floor((Date.now()-1790000000000)/100);\nif(!seq||seq<timeSeq)seq=timeSeq;\nelse seq=seq+1;\nseqs[topic]=seq;\nflow.set('cmd_seq',seqs);\nmsg.payload=`${session}|${seq}|${value}`;\nnode.status({fill:'green',shape:'dot',text:`${topic} seq ${seq}`});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 620,
+    "wires": [
+      [
+        "dc1774cd84d1451c",
+        "debug_mqtt_out"
+      ]
+    ]
+  },
+  {
+    "id": "dc1774cd84d1451c",
+    "type": "mqtt out",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Send ESP32 command",
+    "topic": "",
+    "qos": "1",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "00cbc4dc1fcc44d3",
+    "x": 850,
+    "y": 620,
+    "wires": []
+  },
+  {
+    "id": "b14896f7963945fe",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Store auto_state",
+    "func": "const auto = String(msg.payload||'').trim().toUpperCase() === 'ON';\nflow.set('auto_state', auto);\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 330,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8f1b77d90cb213c8",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Store pi_mode",
+    "func": "const mode = String(msg.payload||'').trim();\nflow.set('pi_mode', mode === 'PI');\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 370,
+    "wires": [
+      [
+        "f54fc473787643b9"
+      ]
+    ]
+  },
+  {
+    "id": "49ce4ea1ac5cc600",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Smart Auto Override (15s)",
+    "func": "const cmdMsg = Object.assign({}, msg);\n\nconst resetMsg = { topic: 'garden/control/reset', payload: 'RESET' };\nconst autoOffMsg = { topic: 'garden/control/auto', payload: 'OFF' };\nconst autoOnMsg = { topic: 'garden/control/auto', payload: 'ON' };\n\nnode.send([ [autoOffMsg, resetMsg, cmdMsg] ]);\n\nif (context.get('autoTimer')) {\n    clearTimeout(context.get('autoTimer'));\n}\n\nconst timeout = setTimeout(() => {\n    node.send([ [autoOnMsg] ]);\n    context.set('autoTimer', null);\n}, 15000); \n\ncontext.set('autoTimer', timeout);\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 700,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "235657a3e6ce5aad",
+    "type": "inject",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Tick 5s",
+    "props": [],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 100,
+    "y": 1050,
+    "wires": [
+      [
+        "14b658207f3dafac"
+      ]
+    ]
+  },
+  {
+    "id": "14b658207f3dafac",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Build Heartbeat",
+    "func": "const session = flow.get('esp32_session');\nif (!session) return null;\nlet counter = flow.get('hb_counter') || 0;\ncounter++;\nflow.set('hb_counter', counter);\nreturn {\n    topic: 'garden/pi/heartbeat',\n    payload: session + '|' + counter\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 1050,
+    "wires": [
+      [
+        "dc1774cd84d1451c"
+      ]
+    ]
+  },
+  {
+    "id": "d770171acc44971f",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Handshake (Ready)",
+    "func": "// Constantly send heartbeat\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t || !t.seq) return null;\n\nreturn {\n    topic: 'garden/pi/ready',\n    payload: String(t.seq)\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 1100,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "7e548f1e44a916da",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Auto Controller (Pi Logic)",
+    "func": "if (!flow.get('auto_state')) return null;\nif (!flow.get('pi_mode')) return null; // Wait until Pi has control\n\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t) return null;\n\nlet msgs = [];\nlet last_pump = flow.get('last_pi_pump');\nlet last_servo = flow.get('last_pi_servo');\n\nif (t.soil !== null && t.soil !== undefined && t.soil !== 'null') {\n    let soil = parseFloat(t.soil);\n    let pump_cmd = null;\n    if (soil < 30) pump_cmd = 'ON';\n    else if (soil >= 60) pump_cmd = 'OFF';\n    \n    if (pump_cmd && pump_cmd !== last_pump) {\n        flow.set('last_pi_pump', pump_cmd);\n        msgs.push({ topic: 'garden/pi/pump', payload: pump_cmd });\n    }\n}\n\nif (t.temp !== null && t.temp !== undefined && t.temp !== 'null') {\n    let temp = parseFloat(t.temp);\n    let servo_cmd = null;\n    if (temp > 32) servo_cmd = 'OPEN';\n    else if (temp < 28) servo_cmd = 'CLOSE';\n    \n    if (servo_cmd && servo_cmd !== last_servo) {\n        flow.set('last_pi_servo', servo_cmd);\n        msgs.push({ topic: 'garden/pi/servo', payload: servo_cmd });\n    }\n}\n\nif (msgs.length > 0) return [msgs];\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 330,
+    "y": 1150,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "4c2c250c0f1376f0",
+    "type": "debug",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Lưu Database (Placeholder)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 340,
+    "y": 1200,
+    "wires": []
+  },
+  {
+    "id": "debug_mqtt_out",
+    "type": "debug",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Lệnh gửi xuống ESP32",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "x": 850,
+    "y": 720,
+    "wires": []
+  },
+  {
+    "id": "192c4c312c2b408f",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Store pi_mode",
+    "func": "const mode = String(msg.payload||'').trim();\nflow.set('pi_mode', mode === 'PI');\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 370,
+    "wires": [
+      [
+        "f54fc473787643b9"
+      ]
+    ]
+  },
+  {
+    "id": "0c0523b27eb1452b",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Force AUTO OFF (Override)",
+    "func": "const cmdMsg = Object.assign({}, msg);\nconst autoOffMsg = {\n    topic: 'garden/control/auto',\n    payload: 'OFF'\n};\nreturn [[autoOffMsg, cmdMsg]];",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 700,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "769a1aac4b39463b",
+    "type": "inject",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Tick 5s",
+    "props": [],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 100,
+    "y": 1050,
+    "wires": [
+      [
+        "e76b1d75a3d848da"
+      ]
+    ]
+  },
+  {
+    "id": "e76b1d75a3d848da",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Build Heartbeat",
+    "func": "const session = flow.get('esp32_session');\nif (!session) return null;\nlet counter = flow.get('hb_counter') || 0;\ncounter++;\nflow.set('hb_counter', counter);\nreturn {\n    topic: 'garden/pi/heartbeat',\n    payload: ${session}|\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 1050,
+    "wires": [
+      [
+        "dc1774cd84d1451c"
+      ]
+    ]
+  },
+  {
+    "id": "eb7d8284c6434eec",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Handshake (Ready)",
+    "func": "if (flow.get('pi_mode')) return null; // Already in PI mode\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t || !t.seq) return null;\n\nreturn {\n    topic: 'garden/pi/ready',\n    payload: String(t.seq)\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 1100,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "bcb0ab58c1104fef",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Auto Controller (Pi Logic)",
+    "func": "if (!flow.get('auto_state')) return null;\nif (!flow.get('pi_mode')) return null; // Wait until Pi has control\n\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t) return null;\n\nlet msgs = [];\nlet last_pump = flow.get('last_pi_pump');\nlet last_servo = flow.get('last_pi_servo');\n\nif (t.soil !== null && t.soil !== undefined && t.soil !== 'null') {\n    let soil = parseFloat(t.soil);\n    let pump_cmd = null;\n    if (soil < 30) pump_cmd = 'ON';\n    else if (soil >= 60) pump_cmd = 'OFF';\n    \n    if (pump_cmd && pump_cmd !== last_pump) {\n        flow.set('last_pi_pump', pump_cmd);\n        msgs.push({ topic: 'garden/pi/pump', payload: pump_cmd });\n    }\n}\n\nif (t.temp !== null && t.temp !== undefined && t.temp !== 'null') {\n    let temp = parseFloat(t.temp);\n    let servo_cmd = null;\n    if (temp > 32) servo_cmd = 'OPEN';\n    else if (temp < 28) servo_cmd = 'CLOSE';\n    \n    if (servo_cmd && servo_cmd !== last_servo) {\n        flow.set('last_pi_servo', servo_cmd);\n        msgs.push({ topic: 'garden/pi/servo', payload: servo_cmd });\n    }\n}\n\nif (msgs.length > 0) return [msgs];\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 330,
+    "y": 1150,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "3c7541575bc24e5d",
+    "type": "debug",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Lưu Database (Placeholder)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 340,
+    "y": 1200,
+    "wires": []
+  },
+  {
+    "id": "460402afdd5f4e23",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Store pi_mode",
+    "func": "const mode = String(msg.payload||'').trim();\nflow.set('pi_mode', mode === 'PI');\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 370,
+    "wires": [
+      [
+        "f54fc473787643b9"
+      ]
+    ]
+  },
+  {
+    "id": "676055b6986c40d5",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Force AUTO OFF (Override)",
+    "func": "const cmdMsg = Object.assign({}, msg);\nconst autoOffMsg = {\n    topic: 'garden/control/auto',\n    payload: 'OFF'\n};\nreturn [[autoOffMsg, cmdMsg]];",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 700,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "6536aba814f14f01",
+    "type": "inject",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Tick 5s",
+    "props": [],
+    "repeat": "5",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 100,
+    "y": 1050,
+    "wires": [
+      [
+        "89f5144225414544"
+      ]
+    ]
+  },
+  {
+    "id": "89f5144225414544",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Build Heartbeat",
+    "func": "const session = flow.get('esp32_session');\nif (!session) return null;\nlet counter = flow.get('hb_counter') || 0;\ncounter++;\nflow.set('hb_counter', counter);\nreturn {\n    topic: 'garden/pi/heartbeat',\n    payload: ${session}|\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 1050,
+    "wires": [
+      [
+        "dc1774cd84d1451c"
+      ]
+    ]
+  },
+  {
+    "id": "16c33fa262734616",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Handshake (Ready)",
+    "func": "if (flow.get('pi_mode')) return null; // Already in PI mode\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t || !t.seq) return null;\n\nreturn {\n    topic: 'garden/pi/ready',\n    payload: String(t.seq)\n};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 1100,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "116d8bda61e24fe9",
+    "type": "function",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Auto Controller (Pi Logic)",
+    "func": "if (!flow.get('auto_state')) return null;\nif (!flow.get('pi_mode')) return null; // Wait until Pi has control\n\nlet t = msg.payload;\nif (typeof t === 'string') {\n    try { t = JSON.parse(t); } catch(e) { return null; }\n}\nif (!t) return null;\n\nlet msgs = [];\nlet last_pump = flow.get('last_pi_pump');\nlet last_servo = flow.get('last_pi_servo');\n\nif (t.soil !== null && t.soil !== undefined && t.soil !== 'null') {\n    let soil = parseFloat(t.soil);\n    let pump_cmd = null;\n    if (soil < 30) pump_cmd = 'ON';\n    else if (soil >= 60) pump_cmd = 'OFF';\n    \n    if (pump_cmd && pump_cmd !== last_pump) {\n        flow.set('last_pi_pump', pump_cmd);\n        msgs.push({ topic: 'garden/pi/pump', payload: pump_cmd });\n    }\n}\n\nif (t.temp !== null && t.temp !== undefined && t.temp !== 'null') {\n    let temp = parseFloat(t.temp);\n    let servo_cmd = null;\n    if (temp > 32) servo_cmd = 'OPEN';\n    else if (temp < 28) servo_cmd = 'CLOSE';\n    \n    if (servo_cmd && servo_cmd !== last_servo) {\n        flow.set('last_pi_servo', servo_cmd);\n        msgs.push({ topic: 'garden/pi/servo', payload: servo_cmd });\n    }\n}\n\nif (msgs.length > 0) return [msgs];\nreturn null;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 330,
+    "y": 1150,
+    "wires": [
+      [
+        "9659123b55c64cbe"
+      ]
+    ]
+  },
+  {
+    "id": "b26133c21daf423a",
+    "type": "debug",
+    "z": "d2d5a5906a7e4dcf",
+    "name": "Lưu Database (Placeholder)",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 340,
+    "y": 1200,
+    "wires": []
+  }
+]
